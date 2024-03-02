@@ -5,7 +5,7 @@ function DashboardCard({ text }: { text: string }) {
     <Card
       sx={{
         padding: 2,
-        minWidth: "200px",
+        minWidth: "150px",
         height: "100%",
         display: "flex",
         flexGrow: 1,
