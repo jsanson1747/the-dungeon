@@ -1,6 +1,8 @@
+"use client";
+
 import DashboardCard from "@/components/DashboardCard";
 import FriendsCard from "@/components/FriendsCard";
-import { Box, Card, Grid, Stack } from "@mui/material";
+import { Box, Grid, Stack } from "@mui/material";
 
 export default function Dashboard() {
   return (
