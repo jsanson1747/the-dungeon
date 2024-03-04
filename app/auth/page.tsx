@@ -1,10 +1,15 @@
-import AuthForm from "@/components/AuthForm";
-import { signIn } from "next-auth/react";
-import { FormEvent } from "react";
+import AuthForm from "@/components/forms/AuthForm";
 import { auth } from "../auth";
+import Link from "next/link";
 
 export default async function LoginPage() {
   const session = await auth();
-  
-  return <AuthForm session={session} />;
+
+  return (
+    <div>
+      <AuthForm session={session} />
+      <br />
+      {!session && <Link href="/auth/signup">New? Signup here!</Link>}
+    </div>
+  );
 }

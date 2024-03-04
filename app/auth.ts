@@ -72,7 +72,7 @@ export const {
 
         if (
           credentials.username === data.username &&
-          credentials.password === data.password
+          (await argon2.verify(data.password, credentials.password as string))
         ) {
           return buildUserRepresentation(data);
         } else return null;

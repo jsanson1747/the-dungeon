@@ -2,7 +2,7 @@
 
 import { Session } from "next-auth";
 import { signIn, signOut } from "next-auth/react";
-import { FormEvent, MouseEventHandler, useState } from "react";
+import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 interface Props {
@@ -38,20 +38,26 @@ export default function AuthForm({ session }: Props) {
     <div>
       {!session && (
         <form onSubmit={handleSubmit(onSubmit)}>
+          Username
+          <br />
           <input {...register("username", { required: true })} />
           {errors.username && <span>This field is required</span>}
-
-          <input {...register("password", { required: true })} />
-          {errors.username && <span>This field is required</span>}
-
+          <br />
+          Password
+          <br />
+          <input
+            {...register("password", { required: true })}
+            type="password"
+          />
+          {errors.password && <span>This field is required</span>}
+          <br />
           <input type="submit" />
         </form>
       )}
       {session && (
-        <div className="flex flex-col justify-between h-full">
-          <button onClick={handleSignOut} className="w-full mt-4">
-            Sign out
-          </button>
+        <div>
+          <Link href="/">Back</Link>
+          <button onClick={handleSignOut}>Sign out</button>
         </div>
       )}
     </div>

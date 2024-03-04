@@ -1,5 +1,5 @@
 import DungeonAppBar from "@/components/DungeonAppBar";
-import { background, theme } from "@/theme";
+import { theme } from "@/theme";
 import {
   AppBar,
   Backdrop,
@@ -14,6 +14,8 @@ import {
 import { grey } from "@mui/material/colors";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { auth } from "./auth";
+import { redirect } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,17 +24,19 @@ export const metadata: Metadata = {
   description: "The Dungeon Dashboard",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+
   return (
     <html lang="en">
       <body>
         <ThemeProvider theme={theme}>
           <header>
-            <DungeonAppBar />
+            <DungeonAppBar session={session} />
           </header>
           <main>
             <Toolbar />
