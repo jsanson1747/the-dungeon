@@ -84,4 +84,5 @@ export const {
     signIn: "/auth",
     signOut: "/auth",
   },
+  trustHost: true,
 });
