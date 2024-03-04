@@ -1,10 +1,16 @@
-"use client";
-
 import DashboardCard from "@/components/DashboardCard";
 import FriendsCard from "@/components/FriendsCard";
 import { Box, Grid, Stack } from "@mui/material";
+import { auth } from "../auth";
+import { redirect } from "next/navigation";
 
-export default function Dashboard() {
+export default async function Dashboard() {
+  const session = await auth();
+
+  if (!session) {
+    redirect("/api/auth/signin");
+  }
+
   return (
     <Box sx={{ padding: 5, height: "90vh" }}>
       <Stack direction="row" gap={2} height="100%">
@@ -25,25 +31,5 @@ export default function Dashboard() {
         <FriendsCard />
       </Stack>
     </Box>
-
-    // <Box sx={{ padding: 5, height: "90vh" }}>
-    // <Stack direction="row" gap={2} height="100%">
-    // <Stack direction="row">
-    //   <Box
-    //     sx={{
-    //       display: "grid",
-    //       gridTemplateColumns: "repeat(auto-fill, minmax(330px, 1fr))",
-    //       gap: 2,
-    //       padding: 3,
-    //     }}
-    //   >
-    //     <DashboardCard text="Campaigns" />
-    //     <DashboardCard text="Data" />
-    //     <DashboardCard text="Characters" />
-    //     <DashboardCard text="Reference" />
-    //   </Box>
-    //   <FriendsCard />
-    // </Stack>
-    // </Box>
   );
 }
