@@ -4,6 +4,8 @@ import { Box, Grid, Stack } from "@mui/material";
 import { auth } from "../auth";
 import { redirect } from "next/navigation";
 
+// The main dashboard
+
 export default async function Dashboard() {
   const session = await auth();
 
