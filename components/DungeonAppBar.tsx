@@ -22,6 +22,7 @@ export default function DungeonAppBar({
           <Typography fontSize={25}>The Dungeon</Typography>
           <Stack alignItems="flex-end">
             {session && (
+              //@ts-ignore
               <Typography>Hello {session?.user?.firstName}</Typography>
             )}
             {session && <Link href="/api/auth/signout">Logout</Link>}
