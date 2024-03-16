@@ -69,10 +69,12 @@ export const {
         }
 
         const authCredentials = dbUserToAuthUser(data);
+        const saltedPassword =
+          (credentials.password as string) + data.sodiumChloride;
 
         if (
           credentials.username === data.username &&
-          (await argon2.verify(data.password, credentials.password as string))
+          (await argon2.verify(data.password, saltedPassword))
         ) {
           return buildUserRepresentation(data);
         } else return null;
