@@ -7,8 +7,6 @@ export default function DungeonAppBar({
 }: {
   session: Session | null;
 }) {
-  console.log(session);
-
   return (
     <AppBar position="fixed" color="primary">
       <Toolbar>
