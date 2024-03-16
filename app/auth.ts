@@ -3,12 +3,6 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import * as argon2 from "argon2";
 
-type AuthUser = {
-  id: string;
-  username: string;
-  password: string;
-};
-
 type ReturnableUser = {
   firstName: string;
   id: string;
@@ -24,15 +18,6 @@ type DbUser = {
   password: string;
   username: string;
 };
-
-function dbUserToAuthUser(dbUser: DbUser): AuthUser {
-  const user: AuthUser = {
-    id: dbUser.id.toString(),
-    username: dbUser.username,
-    password: dbUser.password,
-  };
-  return user;
-}
 
 function buildUserRepresentation(dbUser: DbUser): ReturnableUser {
   const user: ReturnableUser = {
@@ -68,7 +53,6 @@ export const {
           return null;
         }
 
-        const authCredentials = dbUserToAuthUser(data);
         const saltedPassword =
           (credentials.password as string) + data.sodiumChloride;
 
