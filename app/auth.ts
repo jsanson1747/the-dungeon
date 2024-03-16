@@ -1,7 +1,8 @@
 import supabase from "@/supabase/client";
-import NextAuth from "next-auth";
+import NextAuth, { User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import * as argon2 from "argon2";
+import { AdapterUser } from "next-auth/adapters";
 
 type ReturnableUser = {
   firstName: string;
@@ -65,6 +66,18 @@ export const {
       },
     }),
   ],
+  callbacks: {
+    async session({ session, token }) {
+      session.user = token.user;
+      return session;
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        token.user = user;
+      }
+      return token;
+    },
+  },
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/auth",
