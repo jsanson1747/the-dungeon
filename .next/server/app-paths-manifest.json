@@ -1,5 +1,0 @@
-{
-  "/auth/page": "app/auth/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/auth/signup/page": "app/auth/signup/page.js"
-}
