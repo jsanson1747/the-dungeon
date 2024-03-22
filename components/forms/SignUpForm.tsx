@@ -77,7 +77,7 @@ export default function SignUpForm() {
               error={Boolean(errors.username) || exists}
               helperText={
                 exists
-                  ? "Username already exists"
+                  ? "Username unavailable"
                   : errors.username
                   ? "This field is required"
                   : null
