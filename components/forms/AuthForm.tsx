@@ -9,6 +9,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { grey } from "@mui/material/colors";
 import { Session } from "next-auth";
 import { signIn, signOut } from "next-auth/react";
 import Link from "next/link";
@@ -43,7 +44,7 @@ export default function AuthForm({ session }: Props) {
   };
 
   return (
-    <Card>
+    <Card sx={{ backgroundColor: grey[50] }}>
       <Box sx={{ padding: 3 }}>
         {!session && (
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -56,7 +57,10 @@ export default function AuthForm({ session }: Props) {
                 {...register("username", { required: true })}
                 error={Boolean(errors.username)}
                 helperText={errors.username ? "This field is required" : null}
-                sx={{ marginBottom: errors.username ? 0 : 2.8 }}
+                sx={{
+                  marginBottom: errors.username ? 0 : 2.85,
+                  backgroundColor: grey[200],
+                }}
               />
 
               <TextField
@@ -65,10 +69,13 @@ export default function AuthForm({ session }: Props) {
                 type="password"
                 error={Boolean(errors.password)}
                 helperText={errors.password ? "This field is required" : null}
-                sx={{ marginBottom: errors.password ? 0 : 2.8 }}
+                sx={{
+                  marginBottom: errors.password ? 0 : 2.85,
+                  backgroundColor: grey[200],
+                }}
               />
 
-              <Button type="submit" variant="outlined">
+              <Button type="submit" variant="contained">
                 Submit
               </Button>
             </Stack>
