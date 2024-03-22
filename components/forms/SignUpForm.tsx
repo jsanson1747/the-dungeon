@@ -1,5 +1,7 @@
 "use client";
 
+import { Box, Button, Card, Stack, TextField, Typography } from "@mui/material";
+import { grey } from "@mui/material/colors";
 import { redirect } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -44,64 +46,98 @@ export default function SignUpForm() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        First Name
-        <br />
-        <input {...register("firstName", { required: true })} />
-        {errors.firstName && <span>This field is required</span>}
-        <br />
-        Last Name
-        <br />
-        <input {...register("lastName", { required: true })} />
-        {errors.lastName && <span>This field is required</span>}
-        <br />
-        Create a Username
-        <br />
-        <input {...register("username", { required: true })} />
-        {errors.username && <span>This field is required</span>}
-        <br />
-        Create a Password
-        <br />
-        <input
-          {...register("password", {
-            required: true,
-            validate: (val: string) => {
-              if (watch("confirmation") != val) {
-                return "Passwords must match!";
+    <Card sx={{ backgroundColor: grey[50] }}>
+      <Box sx={{ padding: 3 }}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Typography color="text.secondary" textAlign="center" variant="h4">
+            Sign Up
+          </Typography>
+          <Stack paddingTop={2.8}>
+            <TextField
+              label="First Name"
+              {...register("firstName", { required: true })}
+              error={Boolean(errors.firstName)}
+              helperText={errors.username ? "This field is required" : null}
+              sx={{
+                marginBottom: errors.username ? 0 : 2.86,
+              }}
+            />
+            <TextField
+              label="Last Name"
+              {...register("lastName", { required: true })}
+              error={Boolean(errors.lastName)}
+              helperText={errors.username ? "This field is required" : null}
+              sx={{
+                marginBottom: errors.username ? 0 : 2.86,
+              }}
+            />
+            <TextField
+              label="Create Username"
+              {...register("username", { required: true })}
+              error={Boolean(errors.username) || exists}
+              helperText={
+                exists
+                  ? "Username already exists"
+                  : errors.username
+                  ? "This field is required"
+                  : null
               }
-            },
-          })}
-          type="password"
-        />
-        {errors.password && <span>{errors.password.message}</span>}
-        {errors.password &&
-          errors.password.message !== "Passwords must match!" && (
-            <span>This field is required</span>
-          )}
-        <br />
-        Confirm Password
-        <br />
-        <input
-          {...register("confirmation", {
-            required: true,
-            validate: (val: string) => {
-              if (watch("password") != val) {
-                return "Passwords must match!";
+              sx={{
+                marginBottom: errors.username ? 0 : 2.86,
+              }}
+            />
+            <TextField
+              label="Create Password"
+              {...register("password", {
+                required: true,
+                validate: (val: string) => {
+                  if (watch("confirmation") != val) {
+                    return "Passwords must match!";
+                  }
+                },
+              })}
+              type="password"
+              error={Boolean(errors.password)}
+              helperText={
+                errors.password
+                  ? errors.password.message
+                    ? errors.password.message
+                    : "This field is required"
+                  : null
               }
-            },
-          })}
-          type="password"
-        />
-        {errors.confirmation && <span>{errors.confirmation.message}</span>}
-        {errors.confirmation &&
-          errors.confirmation.message !== "Passwords must match!" && (
-            <span>This field is required</span>
-          )}
-        <br />
-        <input type="submit" />
-      </form>
-      {exists && <div>Username already exists</div>}
-    </div>
+              sx={{
+                marginBottom: errors.username ? 0 : 2.86,
+              }}
+            />
+            <TextField
+              label="Confirm Password"
+              {...register("confirmation", {
+                required: true,
+                validate: (val: string) => {
+                  if (watch("password") != val) {
+                    return "Passwords must match!";
+                  }
+                },
+              })}
+              type="password"
+              error={Boolean(errors.confirmation)}
+              helperText={
+                errors.confirmation
+                  ? errors.confirmation.message
+                    ? errors.confirmation.message
+                    : "This field is required"
+                  : null
+              }
+              sx={{
+                marginBottom: errors.username ? 0 : 2.86,
+              }}
+            />
+            <Button type="submit" variant="contained">
+              Submit
+            </Button>
+          </Stack>
+        </form>
+      </Box>
+    </Card>
   );
 }

@@ -59,7 +59,6 @@ export default function AuthForm({ session }: Props) {
                 helperText={errors.username ? "This field is required" : null}
                 sx={{
                   marginBottom: errors.username ? 0 : 2.85,
-                  backgroundColor: grey[200],
                 }}
               />
 
@@ -71,7 +70,6 @@ export default function AuthForm({ session }: Props) {
                 helperText={errors.password ? "This field is required" : null}
                 sx={{
                   marginBottom: errors.password ? 0 : 2.85,
-                  backgroundColor: grey[200],
                 }}
               />
 
@@ -82,9 +80,19 @@ export default function AuthForm({ session }: Props) {
           </form>
         )}
         {session && (
-          <Stack>
-            <Link href="/">Back</Link>
-            <button onClick={handleSignOut}>Sign out</button>
+          <Stack
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Link href="/">
+              <Button>Back</Button>
+            </Link>
+            <Button variant="contained" onClick={handleSignOut}>
+              Sign out
+            </Button>
           </Stack>
         )}
       </Box>

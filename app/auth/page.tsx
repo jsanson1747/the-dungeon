@@ -18,7 +18,7 @@ export default async function LoginPage() {
       }}
     >
       <AuthForm session={session} />
-      <Box sx={{ display: "flex", justifyContent: "center", marginTop: 1 }}>
+      <Box sx={{ display: "flex", justifyContent: "center", paddingTop: 1 }}>
         {!session && (
           <Link href="/auth/signup">
             <Button>New? Sign up here!</Button>
