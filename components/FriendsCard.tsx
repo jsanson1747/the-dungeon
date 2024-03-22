@@ -1,4 +1,5 @@
 import { Box, Card, Typography } from "@mui/material";
+import { grey } from "@mui/material/colors";
 
 function FriendsCard() {
   return (
@@ -9,6 +10,7 @@ function FriendsCard() {
         height: "100%",
         display: "flex",
         justifyContent: "center",
+        backgroundColor: grey[50],
       }}
     >
       <Typography

@@ -1,4 +1,5 @@
 import { Box, Card, Typography } from "@mui/material";
+import { grey } from "@mui/material/colors";
 
 function DashboardCard({ text }: { text: string }) {
   return (
@@ -11,6 +12,7 @@ function DashboardCard({ text }: { text: string }) {
         flexGrow: 1,
         alignItems: "center",
         justifyContent: "center",
+        backgroundColor: grey[50],
       }}
     >
       <Box>
