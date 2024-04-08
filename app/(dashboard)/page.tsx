@@ -3,6 +3,7 @@ import FriendsCard from "@/components/FriendsCard";
 import { Box, Grid, Stack } from "@mui/material";
 import { auth } from "../auth";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 // The main dashboard
 
@@ -18,16 +19,18 @@ export default async function Dashboard() {
       <Stack direction="row" gap={2} height="100%">
         <Grid container spacing={2} sx={{ flexGrow: 1 }}>
           <Grid item sm xs md={6}>
-            <DashboardCard text="Campaigns" />
+            <Link href="/characters" style={{ textDecoration: "none" }}>
+              <DashboardCard text="Characters" />
+            </Link>
           </Grid>
           <Grid item sm xs md={6}>
-            <DashboardCard text="Data" />
+            <DashboardCard text="Campaigns" disabled={true} />
           </Grid>
           <Grid item sm xs md={6}>
-            <DashboardCard text="Characters" />
+            <DashboardCard text="Data" disabled={true} />
           </Grid>
           <Grid item sm xs md={6}>
-            <DashboardCard text="Reference" />
+            <DashboardCard text="Reference" disabled={true} />
           </Grid>
         </Grid>
         <FriendsCard />
