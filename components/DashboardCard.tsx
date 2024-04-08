@@ -1,7 +1,13 @@
 import { Box, Card, Typography } from "@mui/material";
 import { grey } from "@mui/material/colors";
 
-function DashboardCard({ text }: { text: string }) {
+function DashboardCard({
+  text,
+  disabled,
+}: {
+  text: string;
+  disabled?: boolean;
+}) {
   return (
     <Card
       sx={{
@@ -12,12 +18,17 @@ function DashboardCard({ text }: { text: string }) {
         flexGrow: 1,
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: grey[50],
+        backgroundColor: !disabled ? grey[50] : grey[300],
       }}
     >
       <Box>
         <Typography
-          sx={{ textAlign: "center", fontWeight: 500, fontSize: "20px" }}
+          sx={{
+            textAlign: "center",
+            fontWeight: 500,
+            fontSize: "20px",
+            color: !disabled ? "text.primary" : "text.secondary",
+          }}
         >
           {text}
         </Typography>
