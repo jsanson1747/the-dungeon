@@ -1,7 +1,7 @@
 "use client";
 
 import { Alert, Snackbar, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export function SnackbarAlert({
   isOpen,

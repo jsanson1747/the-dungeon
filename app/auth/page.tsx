@@ -1,8 +1,7 @@
 import AuthForm from "@/components/forms/AuthForm";
 import { auth } from "../auth";
 import Link from "next/link";
-import { Box, Button, Card, Snackbar, Stack, Typography } from "@mui/material";
-import { grey } from "@mui/material/colors";
+import { Box, Button, Stack } from "@mui/material";
 import { SnackbarAlert } from "@/components/SnackbarAlert";
 
 export default async function LoginPage({
