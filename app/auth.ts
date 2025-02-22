@@ -1,8 +1,8 @@
-import supabase from "@/supabase/client";
-import NextAuth, { User } from "next-auth";
+import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import * as argon2 from "argon2";
-import { AdapterUser } from "next-auth/adapters";
+import { getUser } from "@/db/queries";
+import { SelectUser } from "@/db/schema";
 
 type ReturnableUser = {
   firstName: string;
@@ -11,16 +11,7 @@ type ReturnableUser = {
   username: string;
 };
 
-type DbUser = {
-  created_at: string;
-  firstName: string;
-  id: number;
-  lastName: string;
-  password: string;
-  username: string;
-};
-
-function buildUserRepresentation(dbUser: DbUser): ReturnableUser {
+function buildUserRepresentation(dbUser: SelectUser): ReturnableUser {
   const user: ReturnableUser = {
     firstName: dbUser.firstName,
     id: dbUser.id.toString(),
@@ -43,25 +34,26 @@ export const {
         password: { type: String(), required: true },
       },
       authorize: async (credentials) => {
-        const { data, error } = await supabase
-          .from("users")
-          .select()
-          .eq("username", credentials.username as string)
-          .limit(1)
-          .single();
+        const { data, error } = await getUser(credentials.username as string);
 
-        if (!data) {
+        if (data?.length === 0) {
           return null;
         }
 
+        if (error) {
+          return null;
+        }
+
+        const user = data[0];
+
         const saltedPassword =
-          (credentials.password as string) + data.sodiumChloride;
+          (credentials.password as string) + user.sodiumChloride;
 
         if (
-          credentials.username === data.username &&
-          (await argon2.verify(data.password, saltedPassword))
+          credentials.username === user.username &&
+          (await argon2.verify(user.password, saltedPassword))
         ) {
-          return buildUserRepresentation(data);
+          return buildUserRepresentation(user);
         } else return null;
       },
     }),

@@ -1,10 +1,11 @@
-import supabase from "@/supabase/client";
 import { NextRequest, NextResponse } from "next/server";
 import * as argon2 from "argon2";
 import * as crypto from "crypto";
+import { InsertUser } from "@/db/schema";
+import { createUser } from "@/db/queries";
 
 export async function POST(request: NextRequest) {
-  const requestData = await request.json();
+  const requestData: InsertUser = await request.json();
 
   let salt: Buffer;
   try {
@@ -27,13 +28,16 @@ export async function POST(request: NextRequest) {
 
   requestData.password = await argon2.hash(saltedPassword);
   requestData.sodiumChloride = salt.toString("hex");
-  const { data, error } = await supabase.from("users").insert(requestData);
+
+  const { data, error } = await createUser(requestData);
+
+  console.log(data);
 
   if (error) {
     return NextResponse.json(
       {
         success: false,
-        message: `${error.details} -- ${error.message}`,
+        message: `${error.detail} -- ${error.message}`,
       },
       { status: 409 }
     );
