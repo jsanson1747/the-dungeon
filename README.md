@@ -16,13 +16,18 @@ To start the production server run `npm run start`
 
 ## Hosted Production App
 
-The Dungeon is deployed to a Vercel server at https://the-dungeon.vercel.app. If hosting an instance of this application yourself, you will need to configure a database instance for the app to use. 
+The Dungeon is deployed to a Vercel server at https://the-dungeon.vercel.app. If hosting an instance of this application yourself, you will need to configure a database instance for the app to use.
 
 ## Supabase
 
-This application uses Supabase as it's backend database. Drizzle ORM is utilized as an api layer between the Supabase DB and the app. During development, modify the DATABASE_URL environment variable to point towards your local supabase instance. 
+This application uses Supabase as it's backend database. Drizzle ORM is utilized as an api layer between the Supabase DB and the app. During development, modify the DATABASE_URL environment variable to point towards your local supabase instance. Reset and seed local database with `npx supabase db reset`.
+
+## Drizzle ORM
+
+Generate schema migrations with `npx drizzle-kit generate`
 
 ## Authentication
+
 This application utilizes the Auth.js framework as it integrates well with NextJS. Passwords are heavily encrypted and stored securely.
 
 ## General Application Flow
