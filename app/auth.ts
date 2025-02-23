@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import * as argon2 from "argon2";
 import { getUser } from "@/db/queries";
-import { SelectUser } from "@/db/schema";
+import { SelectUser } from "@/db/schema/users";
 
 type ReturnableUser = {
   firstName: string;

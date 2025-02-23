@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import * as argon2 from "argon2";
 import * as crypto from "crypto";
-import { InsertUser } from "@/db/schema";
+import { InsertUser } from "@/db/schema/users";
 import { createUser } from "@/db/queries";
 
 export async function POST(request: NextRequest) {

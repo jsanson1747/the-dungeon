@@ -1,6 +1,6 @@
 import postgres from "postgres";
 import { db } from "./index";
-import { InsertUser, SelectUser, usersTable } from "./schema";
+import { InsertUser, SelectUser, usersTable } from "./schema/users";
 import { eq } from "drizzle-orm";
 
 type QueryReturnType<T> =
