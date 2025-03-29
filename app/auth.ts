@@ -3,6 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import * as argon2 from "argon2";
 import { getUser } from "@/db/queries";
 import { SelectUser } from "@/db/schema/users";
+import { AdapterUser } from "next-auth/adapters";
 
 type ReturnableUser = {
   firstName: string;
@@ -13,8 +14,8 @@ type ReturnableUser = {
 
 function buildUserRepresentation(dbUser: SelectUser): ReturnableUser {
   const user: ReturnableUser = {
-    firstName: dbUser.firstName,
     id: dbUser.id.toString(),
+    firstName: dbUser.firstName,
     lastName: dbUser.lastName,
     username: dbUser.username,
   };
@@ -36,15 +37,11 @@ export const {
       authorize: async (credentials) => {
         const { data, error } = await getUser(credentials.username as string);
 
-        if (data?.length === 0) {
-          return null;
-        }
-
         if (error) {
           return null;
         }
 
-        const user = data[0];
+        const user = data;
 
         const saltedPassword =
           (credentials.password as string) + user.sodiumChloride;
@@ -58,17 +55,20 @@ export const {
       },
     }),
   ],
+  session: {
+    strategy: "jwt",
+  },
   callbacks: {
-    async session({ session, token }) {
-      //@ts-ignore
-      session.user = token.user;
-      return session;
-    },
     async jwt({ token, user }) {
       if (user) {
+        console.log(user);
         token.user = user;
       }
       return token;
+    },
+    async session({ session, token }) {
+      session.user = token.user as AdapterUser;
+      return session;
     },
   },
   secret: process.env.NEXTAUTH_SECRET,
