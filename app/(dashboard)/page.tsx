@@ -18,18 +18,18 @@ export default async function Dashboard() {
     <Box sx={{ padding: 5, height: "90vh" }}>
       <Stack direction="row" gap={2} height="100%">
         <Grid container spacing={2} sx={{ flexGrow: 1 }}>
-          <Grid item sm xs md={6}>
+          <Grid size={6}>
             <Link href="/characters" style={{ textDecoration: "none" }}>
               <DashboardCard text="Characters" />
             </Link>
           </Grid>
-          <Grid item sm xs md={6}>
+          <Grid size={6}>
             <DashboardCard text="Campaigns" disabled={true} />
           </Grid>
-          <Grid item sm xs md={6}>
+          <Grid size={6}>
             <DashboardCard text="Data" disabled={true} />
           </Grid>
-          <Grid item sm xs md={6}>
+          <Grid size={6}>
             <DashboardCard text="Reference" disabled={true} />
           </Grid>
         </Grid>
