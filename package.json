@@ -10,9 +10,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.3",
-    "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.15.11",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^7.0.1",
     "@supabase/supabase-js": "^2.39.7",
     "argon2": "^0.40.1",
     "dotenv": "^16.4.5",
