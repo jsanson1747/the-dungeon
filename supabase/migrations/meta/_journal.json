@@ -8,6 +8,13 @@
       "when": 1729641121637,
       "tag": "0000_smart_screwball",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1743272357912,
+      "tag": "0001_spotty_doctor_faustus",
+      "breakpoints": true
     }
   ]
 }
