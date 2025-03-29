@@ -31,13 +31,11 @@ export async function POST(request: NextRequest) {
 
   const { data, error } = await createUser(requestData);
 
-  console.log(data);
-
   if (error) {
     return NextResponse.json(
       {
         success: false,
-        message: `${error.detail} -- ${error.message}`,
+        message: `${error.message}`,
       },
       { status: 409 }
     );
