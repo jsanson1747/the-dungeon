@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { grey, lime } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
@@ -13,9 +13,9 @@ export const theme = createTheme({
     },
 
     background: {
-      default: grey[400]
-    }
+      default: grey[400],
+    },
   },
-})
+});
 
-export const background = grey[400]
+export const background = grey[400];
