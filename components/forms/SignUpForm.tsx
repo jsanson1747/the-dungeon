@@ -45,8 +45,10 @@ export default function SignUpForm() {
     }
   };
 
+  const helperTextBuffer = 3.22;
+
   return (
-    <Card sx={{ backgroundColor: grey[50] }}>
+    <Card sx={{ backgroundColor: grey[50], width: 300 }}>
       <Box sx={{ padding: 3 }}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Typography color="text.secondary" textAlign="center" variant="h4">
@@ -59,7 +61,7 @@ export default function SignUpForm() {
               error={Boolean(errors.firstName)}
               helperText={errors.username ? "This field is required" : null}
               sx={{
-                marginBottom: errors.username ? 0 : 2.86,
+                marginBottom: errors.username ? 0 : helperTextBuffer,
               }}
             />
             <TextField
@@ -68,7 +70,7 @@ export default function SignUpForm() {
               error={Boolean(errors.lastName)}
               helperText={errors.username ? "This field is required" : null}
               sx={{
-                marginBottom: errors.username ? 0 : 2.86,
+                marginBottom: errors.username ? 0 : helperTextBuffer,
               }}
             />
             <TextField
@@ -83,7 +85,7 @@ export default function SignUpForm() {
                   : null
               }
               sx={{
-                marginBottom: errors.username ? 0 : 2.86,
+                marginBottom: errors.username ? 0 : helperTextBuffer,
               }}
             />
             <TextField
@@ -106,7 +108,7 @@ export default function SignUpForm() {
                   : null
               }
               sx={{
-                marginBottom: errors.username ? 0 : 2.86,
+                marginBottom: errors.username ? 0 : helperTextBuffer,
               }}
             />
             <TextField
@@ -129,7 +131,7 @@ export default function SignUpForm() {
                   : null
               }
               sx={{
-                marginBottom: errors.username ? 0 : 2.86,
+                marginBottom: errors.username ? 0 : helperTextBuffer,
               }}
             />
             <Button type="submit" variant="contained">

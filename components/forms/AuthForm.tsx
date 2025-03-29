@@ -43,8 +43,10 @@ export default function AuthForm({ session }: Props) {
     await signOut({ callbackUrl: "/" });
   };
 
+  const helperTextBuffer = 3.22;
+
   return (
-    <Card sx={{ backgroundColor: grey[50] }}>
+    <Card sx={{ backgroundColor: grey[50], width: 300 }}>
       <Box sx={{ padding: 3 }}>
         {!session && (
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -58,7 +60,7 @@ export default function AuthForm({ session }: Props) {
                 error={Boolean(errors.username)}
                 helperText={errors.username ? "This field is required" : null}
                 sx={{
-                  marginBottom: errors.username ? 0 : 2.85,
+                  marginBottom: errors.username ? 0 : helperTextBuffer,
                 }}
               />
 
@@ -69,7 +71,7 @@ export default function AuthForm({ session }: Props) {
                 error={Boolean(errors.password)}
                 helperText={errors.password ? "This field is required" : null}
                 sx={{
-                  marginBottom: errors.password ? 0 : 2.85,
+                  marginBottom: errors.password ? 0 : helperTextBuffer,
                 }}
               />
 
