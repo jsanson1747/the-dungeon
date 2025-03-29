@@ -1,0 +1,76 @@
+openapi: 3.0.0
+info:    
+  title: The Dungeon API
+  description: Backend API for The Dungeon website.
+  version: 0.0.1
+
+servers:
+  - url: https://the-dungeon.vercel.app/api
+    description: Hosted production server
+  - url: http://localhost:3000/api
+    description: Local development server
+
+components: 
+  schemas:
+    Alignment:
+      type: string
+      enum: [lawful good, neutral good, chaotic good, lawful neutral, true neutral, chaotic neutral, lawful evil, neutral evil, chaotic evil]
+      
+    Character:
+      type: object
+      properties:
+        id:
+          type: number
+        createdAt:
+          type: string
+          format: date-time
+        userId:
+          type: number
+        name:
+          type: string
+        race:
+          type: number
+        class:
+          type: number
+        alignment:
+          $ref: "#/components/schemas/Alignment"
+        level:
+          type: number
+        exeriencePoints:
+          type: number
+
+
+paths:
+  /api/users/{userId}/characters:
+    get:
+      summary: Returns a list of characters associated with userId.
+      responses:
+        "200": 
+          description: A JSON array of characters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Character"
+        "404":
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
