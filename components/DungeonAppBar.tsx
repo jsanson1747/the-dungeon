@@ -1,4 +1,4 @@
-import { AppBar, Container, Stack, Toolbar, Typography } from "@mui/material";
+import { AppBar, Button, Stack, Toolbar, Typography } from "@mui/material";
 import { Session } from "next-auth";
 import Link from "next/link";
 
@@ -20,10 +20,19 @@ export default function DungeonAppBar({
           <Typography fontSize={25}>The Dungeon</Typography>
           <Stack alignItems="flex-end">
             {session && (
-              //@ts-ignore
               <Typography>Hello {session?.user?.firstName}</Typography>
             )}
-            {session && <Link href="/api/auth/signout">Logout</Link>}
+            {session && (
+              <Button
+                LinkComponent={Link}
+                variant="text"
+                color="secondary"
+                sx={{ padding: 0 }}
+                href="/api/auth/signout"
+              >
+                Sign Out
+              </Button>
+            )}
           </Stack>
         </Stack>
       </Toolbar>
