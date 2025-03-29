@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import * as argon2 from "argon2";
-import { getUser } from "@/db/queries";
+import { getUserByUsername } from "@/db/queries";
 import { SelectUser } from "@/db/schema/users";
 import { AdapterUser } from "next-auth/adapters";
 
@@ -35,7 +35,9 @@ export const {
         password: { type: String(), required: true },
       },
       authorize: async (credentials) => {
-        const { data, error } = await getUser(credentials.username as string);
+        const { data, error } = await getUserByUsername(
+          credentials.username as string
+        );
 
         if (error) {
           return null;
