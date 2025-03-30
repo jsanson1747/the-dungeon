@@ -56,7 +56,7 @@ export default async function CharacterListPage() {
               height: "calc(100vh - 196px - 22px)",
             }}
           >
-            <Typography variant="h2">No characters found</Typography>
+            <Typography variant="h3">No characters found</Typography>
           </Box>
         ) : (
           <Box
