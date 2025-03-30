@@ -53,7 +53,7 @@ export default async function CharacterListPage() {
               justifyContent: "center",
               alignItems: "center",
               width: "100%",
-              height: "calc(100vh - 196px - 22px)",
+              height: "calc(100vh - 196px - 23px)",
             }}
           >
             <Typography variant="h3">No characters found</Typography>
@@ -66,7 +66,7 @@ export default async function CharacterListPage() {
               gap: 3,
               paddingX: 3,
               overflowY: "auto",
-              height: "calc(100vh - 196px - 22px)",
+              height: "calc(100vh - 196px - 23px)",
             }}
           >
             {characters.map((character, index) => (
