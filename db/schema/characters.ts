@@ -27,7 +27,7 @@ export const characters = pgTable("characters", {
   id: serial("id").primaryKey().notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   userId: integer("user_id")
-    .references(() => races.id)
+    .references(() => users.id)
     .notNull(),
   name: text("name").notNull(),
   raceId: integer("race")
