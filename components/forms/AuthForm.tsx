@@ -92,7 +92,11 @@ export default function AuthForm({ session }: Props) {
             <Link href="/">
               <Button>Back</Button>
             </Link>
-            <Button variant="contained" onClick={handleSignOut}>
+            <Button
+              sx={{ width: "100%" }}
+              variant="contained"
+              onClick={handleSignOut}
+            >
               Sign out
             </Button>
           </Stack>
