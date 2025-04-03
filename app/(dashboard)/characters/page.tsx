@@ -17,7 +17,7 @@ export default async function CharacterListPage() {
 
   const user = session.user;
 
-  let { data: characterSummaries, error } = await client.GET(
+  const { data: characterSummaries, error } = await client.GET(
     "/users/{userId}/characters",
     {
       params: {
