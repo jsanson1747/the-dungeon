@@ -1,8 +1,11 @@
 import { auth } from "@/app/auth";
+import { client } from "@/client";
 import { BackButton } from "@/components/BackButton";
 import { CharacterCard } from "@/components/CharacterCard";
+import { NewCharacterButton } from "@/components/NewCharacterButton";
 import { NewCharacterCard } from "@/components/NewCharacterCard";
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Box, Button, IconButton, Stack, Typography } from "@mui/material";
+import { grey } from "@mui/material/colors";
 import { redirect } from "next/navigation";
 
 export default async function CharacterListPage() {
@@ -14,20 +17,20 @@ export default async function CharacterListPage() {
 
   const user = session.user;
 
-  const response = await fetch(
-    `http://localhost:3000/api/users/${user.id}/characters`,
+  const { data: characterSummaries, error } = await client.GET(
+    "/users/{userId}/characters",
     {
-      method: "GET",
+      params: {
+        path: { userId: user.id },
+      },
     }
   );
 
-  if (!response.ok) {
-    throw new Error("Failed to fetch characters");
+  if (error) {
+    throw new Error(error.message);
   }
 
-  const characters = (await response.json()).data;
-
-  // const characters = [...Array(10)];
+  // characterSummary = { data: [...Array(0)] };
 
   return (
     <Box
@@ -49,7 +52,7 @@ export default async function CharacterListPage() {
             Characters
           </Typography>
         </Box>
-        {characters.length === 0 ? (
+        {characterSummaries.data.length === 0 ? (
           <Box
             sx={{
               display: "flex",
@@ -59,7 +62,10 @@ export default async function CharacterListPage() {
               height: "calc(100vh - 196px - 23px)",
             }}
           >
-            <Typography variant="h3">No characters found</Typography>
+            <Stack sx={{ alignItems: "center", gap: 1 }}>
+              <Typography variant="h3">No characters found</Typography>
+              <NewCharacterButton />
+            </Stack>
           </Box>
         ) : (
           <Box
@@ -73,8 +79,11 @@ export default async function CharacterListPage() {
             }}
           >
             <NewCharacterCard />
-            {characters.map((character, index) => (
-              <CharacterCard key={index} />
+            {characterSummaries.data.map((character, index) => (
+              <CharacterCard
+                key={index}
+                characterSummary={characterSummaries.data[index]}
+              />
             ))}
           </Box>
         )}

@@ -18,7 +18,7 @@ export function NewCharacterCard() {
         },
       }}
     >
-      <Link href="/">
+      <Link href="/characters/create">
         <Box
           sx={{
             display: "flex",

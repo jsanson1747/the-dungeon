@@ -16,7 +16,7 @@ components:
       type: string
       enum: [lawful good, neutral good, chaotic good, lawful neutral, true neutral, chaotic neutral, lawful evil, neutral evil, chaotic evil]
       
-    Character:
+    CharacterSummary:
       type: object
       properties:
         id:
@@ -38,10 +38,25 @@ components:
           type: number
         exeriencePoints:
           type: number
-
+      required:
+        - id
+        - createdAt
+        - userId
+        - name
+        - race
+        - class
+        - alignment
+        - level
+        - experiencePoints
 
 paths:
-  /api/users/{userId}/characters:
+  /users/{userId}/characters:
+    parameters:
+      - in: path
+        name: userId
+        schema: 
+          type: string
+        required: true
     get:
       summary: Returns a list of characters associated with userId.
       responses:
@@ -55,7 +70,9 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Character"
+                      $ref: "#/components/schemas/CharacterSummary"
+                required:
+                  - data
         "404":
           description: User not found
           content:

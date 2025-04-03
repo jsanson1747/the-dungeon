@@ -1,8 +1,13 @@
+import { CharacterSummary } from "@/domain-model/api/schema";
 import { Box, Card } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import Link from "next/link";
 
-export function CharacterCard() {
+export function CharacterCard({
+  characterSummary,
+}: {
+  characterSummary: CharacterSummary;
+}) {
   return (
     <Card
       sx={{
@@ -17,7 +22,7 @@ export function CharacterCard() {
         },
       }}
     >
-      <Link href="/">
+      <Link href={`/characters/${characterSummary.id}`}>
         <Box
           sx={{
             display: "flex",
@@ -28,7 +33,7 @@ export function CharacterCard() {
             backgroundColor: grey[100],
           }}
         >
-          {/* <AddIcon sx={{ fontSize: 100, color: grey[500] }} /> */}
+          {/* Todo: Character summary here */}
         </Box>
       </Link>
     </Card>
