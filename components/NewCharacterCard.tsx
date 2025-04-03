@@ -12,10 +12,6 @@ export function NewCharacterCard() {
         ":hover": {
           boxShadow: 8,
         },
-        "& a": {
-          textDecoration: "none",
-          color: "inherit",
-        },
       }}
     >
       <Link href="/characters/create">

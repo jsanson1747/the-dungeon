@@ -19,6 +19,9 @@ function DashboardCard({
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: !disabled ? grey[50] : grey[300],
+        ":hover": {
+          boxShadow: disabled ? null : 8,
+        },
       }}
     >
       <Box>
