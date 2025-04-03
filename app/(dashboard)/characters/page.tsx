@@ -79,10 +79,10 @@ export default async function CharacterListPage() {
             }}
           >
             <NewCharacterCard />
-            {characterSummaries.data.map((character, index) => (
+            {characterSummaries.data.map((characterSummary) => (
               <CharacterCard
-                key={index}
-                characterSummary={characterSummaries.data[index]}
+                key={characterSummary.id}
+                characterSummary={characterSummary}
               />
             ))}
           </Box>
