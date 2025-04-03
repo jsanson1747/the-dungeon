@@ -1,6 +1,7 @@
 import { auth } from "@/app/auth";
 import { BackButton } from "@/components/BackButton";
 import { CharacterCard } from "@/components/CharacterCard";
+import { NewCharacterCard } from "@/components/NewCharacterCard";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { redirect } from "next/navigation";
 
@@ -25,6 +26,8 @@ export default async function CharacterListPage() {
   }
 
   const characters = (await response.json()).data;
+
+  // const characters = [...Array(10)];
 
   return (
     <Box
@@ -69,6 +72,7 @@ export default async function CharacterListPage() {
               height: "calc(100vh - 196px - 23px)",
             }}
           >
+            <NewCharacterCard />
             {characters.map((character, index) => (
               <CharacterCard key={index} />
             ))}

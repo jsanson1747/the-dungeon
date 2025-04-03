@@ -1,8 +1,9 @@
 import { Box, Card } from "@mui/material";
 import { grey } from "@mui/material/colors";
+import AddIcon from "@mui/icons-material/Add";
 import Link from "next/link";
 
-export function CharacterCard() {
+export function NewCharacterCard() {
   return (
     <Card
       sx={{
@@ -25,10 +26,10 @@ export function CharacterCard() {
             height: "100%",
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: grey[100],
+            backgroundColor: grey[300],
           }}
         >
-          {/* <AddIcon sx={{ fontSize: 100, color: grey[500] }} /> */}
+          <AddIcon sx={{ fontSize: 100, color: grey[500] }} />
         </Box>
       </Link>
     </Card>
