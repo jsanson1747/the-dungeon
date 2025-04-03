@@ -17,7 +17,7 @@ export default async function CharacterListPage() {
 
   const user = session.user;
 
-  const { data: characterSummaries, error } = await client.GET(
+  let { data: characterSummaries, error } = await client.GET(
     "/users/{userId}/characters",
     {
       params: {
@@ -30,13 +30,23 @@ export default async function CharacterListPage() {
     throw new Error(error.message);
   }
 
-  // characterSummary = { data: [...Array(0)] };
+  // characterSummaries = {
+  //   data: [
+  //     { id: 3 },
+  //     { id: 4 },
+  //     { id: 4 },
+  //     { id: 4 },
+  //     { id: 4 },
+  //     { id: 4 },
+  //     { id: 4 },
+  //   ],
+  // };
 
   return (
     <Box
       sx={{
-        padding: 3,
-        paddingBottom: 6,
+        paddingY: 5,
+        paddingX: 2,
       }}
     >
       <Stack direction="column" spacing={3}>
@@ -59,7 +69,7 @@ export default async function CharacterListPage() {
               justifyContent: "center",
               alignItems: "center",
               width: "100%",
-              height: "calc(100vh - 196px - 23px)",
+              height: "calc(100vh - 196px - 37px)",
             }}
           >
             <Stack sx={{ alignItems: "center", gap: 1 }}>
@@ -75,7 +85,8 @@ export default async function CharacterListPage() {
               gap: 3,
               paddingX: 3,
               overflowY: "auto",
-              height: "calc(100vh - 196px - 23px)",
+              height: "calc(100vh - 196px - 37px)",
+              paddingY: 2,
             }}
           >
             <NewCharacterCard />
