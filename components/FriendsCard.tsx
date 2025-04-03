@@ -1,3 +1,4 @@
+import { theme } from "@/theme";
 import { Box, Card, Stack, Typography } from "@mui/material";
 import { grey } from "@mui/material/colors";
 
@@ -6,11 +7,15 @@ function FriendsCard() {
     <Card
       sx={{
         padding: 2,
-        width: "100%",
-        height: "100%",
-        display: "flex",
+        display: "grid",
         justifyContent: "center",
         backgroundColor: grey[300],
+        [theme.breakpoints.down("md")]: {
+          gridRow: "1 / 5",
+          gridColumn: "2",
+        },
+        gridRow: "1 / 3",
+        gridColumn: "3",
       }}
     >
       <Stack>

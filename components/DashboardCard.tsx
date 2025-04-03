@@ -12,7 +12,6 @@ function DashboardCard({
     <Card
       sx={{
         padding: 2,
-        minWidth: "200px",
         height: "100%",
         display: "flex",
         flexGrow: 1,
