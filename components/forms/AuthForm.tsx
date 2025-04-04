@@ -50,7 +50,12 @@ export default function AuthForm({ session }: Props) {
       <Box sx={{ padding: 3 }}>
         {!session && (
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Typography color="text.secondary" textAlign="center" variant="h4">
+            <Typography
+              color="text.secondary"
+              textAlign="center"
+              component="h1"
+              variant="h4"
+            >
               Log In
             </Typography>
             <Stack paddingTop={2.8}>
@@ -89,6 +94,14 @@ export default function AuthForm({ session }: Props) {
               alignItems: "center",
             }}
           >
+            <Typography
+              color="text.secondary"
+              component="h1"
+              variant="h4"
+              sx={{ paddingBottom: 6 }}
+            >
+              Sign Out?
+            </Typography>
             <Link href="/">
               <Button>Back</Button>
             </Link>
