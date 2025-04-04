@@ -1,5 +1,5 @@
 import { CharacterSummary } from "@/domain-model/api/schema";
-import { Box, Card } from "@mui/material";
+import { Box, Card, CardContent, CardHeader, Typography } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import Link from "next/link";
 
@@ -16,6 +16,10 @@ export function CharacterCard({
         ":hover": {
           boxShadow: 8,
         },
+        "& a": {
+          textDecoration: "none",
+          color: "inherit",
+        },
       }}
     >
       <Link href={`/characters/${characterSummary.id}`}>
@@ -25,11 +29,10 @@ export function CharacterCard({
             flexGrow: 1,
             height: "100%",
             justifyContent: "center",
-            alignItems: "center",
             backgroundColor: grey[100],
           }}
         >
-          {/* Todo: Character summary here */}
+          <Typography variant="h2">{characterSummary.name}</Typography>
         </Box>
       </Link>
     </Card>
